@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import { reducer as list } from './list';
 
-import list from './list';
-
-export default combineReducers({
+const reducers = combineReducers({
   list,
 });
+
+export default reducers;

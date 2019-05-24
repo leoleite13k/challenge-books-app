@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Creators as ListActions } from '~/store/ducks/list';
+import ListActions from '~/store/ducks/list';
 
 import {
   Container, BookList, Scroll, Error,
@@ -39,20 +39,20 @@ class List extends Component {
   }
 
   refresh = async () => {
-    const { loadListRequest, list } = await this.props;
+    const { loadRequest, list } = await this.props;
     const { textSearch } = list;
 
-    loadListRequest(textSearch, 0);
+    loadRequest(textSearch, 0);
 
     this.setState({ page: 0, refreshing: false });
   };
 
   loadList = async () => {
-    const { loadListRequest, list } = await this.props;
+    const { loadRequest, list } = await this.props;
     const { textSearch = '%27%27' } = list;
     const { page } = this.state;
 
-    loadListRequest(textSearch, page);
+    loadRequest(textSearch, page);
     this.setState({ page: page + 1 });
   };
 

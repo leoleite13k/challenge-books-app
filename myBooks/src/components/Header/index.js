@@ -6,7 +6,7 @@ import { withNavigation } from 'react-navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Creators as ListActions } from '~/store/ducks/list';
+import ListActions from '~/store/ducks/list';
 
 import {
   Container,
@@ -49,13 +49,13 @@ class Header extends Component {
   };
 
   handleSearch = async (textSearch) => {
-    const { loadListRequest } = await this.props;
+    const { loadRequest } = await this.props;
 
     if (textSearch === '') {
       textSearch = '%27%27';
     }
 
-    loadListRequest(textSearch, 0);
+    loadRequest(textSearch, 0);
 
     if (textSearch !== '%27%27') {
       this.setState({ titleSearch: textSearch });
@@ -67,9 +67,9 @@ class Header extends Component {
   };
 
   clearFilter = async () => {
-    const { loadListRequest } = await this.props;
+    const { loadRequest } = await this.props;
 
-    loadListRequest('%27%27', 0);
+    loadRequest('%27%27', 0);
 
     this.setState({ titleSearch: '' });
   };
