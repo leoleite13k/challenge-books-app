@@ -86,7 +86,6 @@ export default class Detail extends Component {
     const { navigation } = this.props;
     const book = navigation.getParam('book');
     const { volumeInfo = {}, saleInfo = {} } = book;
-
     const {
       categories = [''],
       pageCount = 0,
@@ -96,9 +95,7 @@ export default class Detail extends Component {
       averageRating = 0,
       description = '',
     } = volumeInfo;
-
     const { isEbook = false, listPrice = {} } = saleInfo;
-
     const { thumbnail = null } = imageLinks;
     const { amount = 0.0 } = listPrice;
 
@@ -130,8 +127,8 @@ export default class Detail extends Component {
           </Info>
         </HeaderBook>
         <Description>
-          {description.split('. ').map(item => (
-            <Desc>{item}.</Desc>
+          {description.split('. ').map((item, index) => (
+            <Desc key={String(item + index)}>{item}.</Desc>
           ))}
         </Description>
       </Container>
